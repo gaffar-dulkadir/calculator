@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Hesap Makinesi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h1>🧮 Flask Hesap Makinesi</h1>
+            
+            <div class="display">
+                <div class="expression" id="expression"></div>
+                <input type="text" id="display" value="0" readonly>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('basic')">Temel</button>
+                <button class="tab-btn" onclick="switchTab('advanced')">Gelişmiş</button>
+            </div>
+            
+            <div id="basic-calc" class="calc-panel">
+                <div class="input-group">
+                    <input type="number" id="num1" placeholder="Sayı 1" step="any">
+                    <input type="number" id="num2" placeholder="Sayı 2" step="any">
+                </div>
+                
+                <div class="operations">
+                    <button onclick="calculate('add')" class="operator">+</button>
+                    <button onclick="calculate('subtract')" class="operator">-</button>
+                    <button onclick="calculate('multiply')" class="operator">×</button>
+                    <button onclick="calculate('divide')" class="operator">÷</button>
+                    <button onclick="calculate('power')" class="operator">xʸ</button>
+                    <button onclick="calculate('modulo')" class="operator">%</button>
+                </div>
+            </div>
+            
+            <div id="advanced-calc" class="calc-panel" style="display: none;">
+                <div class="input-group">
+                    <input type="number" id="advNum" placeholder="Sayı" step="any">
+                </div>
+                
+                <div class="operations">
+                    <button onclick="advancedCalc('sqrt')" class="advanced">√x</button>
+                    <button onclick="advancedCalc('square')" class="advanced">x²</button>
+                    <button onclick="advancedCalc('factorial')" class="advanced">x!</button>
+                    <button onclick="advancedCalc('log')" class="advanced">log</button>
+                    <button onclick="advancedCalc('ln')" class="advanced">ln</button>
+                    <button onclick="advancedCalc('sin')" class="advanced">sin</button>
+                    <button onclick="advancedCalc('cos')" class="advanced">cos</button>
+                    <button onclick="advancedCalc('tan')" class="advanced">tan</button>
+                </div>
+            </div>
+            
+            <button onclick="clearDisplay()" class="clear-btn">Temizle (C)</button>
+        </div>
+        
+        <div class="history">
+            <div class="history-header">
+                <h2>📜 Geçmiş</h2>
+                <button onclick="clearHistory()" class="clear-history-btn">Temizle</button>
+            </div>
+            <div id="history-list"></div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
